@@ -1,0 +1,24 @@
+# Backend node modules
+backend/node_modules/
+
+# Backend environment variables
+backend/.env
+
+# Frontend node modules (when you create it)
+frontend/node_modules/
+
+# Build folders (React or backend build output)
+backend/dist/
+frontend/build/
+frontend/dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor cache
+.vscode/
+.idea/
