@@ -1,3 +1,4 @@
+require('dotenv').config();
 const userModel = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
@@ -25,7 +26,7 @@ async function registerUser(req, res) {
   // create token and save in cookies
     const token = jwt.sign({
         id: user._id,
-    }, "919dfd1a90780fdd191c35c69b18de16")
+    }, process.env.JWT_SECRET)
     res.cookie("token", token)
 
     res.status(201).json({
@@ -59,7 +60,7 @@ async function loginUser(req,res){
 
   const token = jwt.sign({
     id: user._id,
-  }, "919dfd1a90780fdd191c35c69b18de16")
+  }, process.env.JWT_SECRET)
 
   res.cookie("token", token);
 
