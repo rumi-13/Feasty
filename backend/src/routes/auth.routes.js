@@ -6,5 +6,5 @@ const router = express.Router();
 
 // create user route
 router.post('/user/register', authController.registerUser);
-
+router.get('/user/login', authController.loginUser)
 module.exports = router;
