@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+// Create Schema
 const foodPandaSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -17,6 +17,7 @@ const foodPandaSchema = new mongoose.Schema({
 
 })
 
-const foodPartnerModel = mongoose.model("foodPartnerModel", foodPandaSchema);
+// Create Model
+const foodPartnerModel = mongoose.model("foodPartner", foodPandaSchema);
 
 module.exports = foodPartnerModel;

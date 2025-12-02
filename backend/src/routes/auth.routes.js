@@ -13,4 +13,7 @@ router.get('/user/logout', authController.logoutUser);
 router.post('/foodpartner/register', authController.registerFoodPartner);
 router.get('/foodpartner/login', authController.loginFoodPartner);
 router.get('/foodpartner/logout', authController.logoutFoodPartner);
+
+
+// Export
 module.exports = router;
