@@ -1,13 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserRegister from "../pages/UserRegister";
+import UserLogin from "../pages/UserLogin";
+import FoodPartnerLogin from "../pages/FoodPartnerLogin";
+import FoodPartnerRegister from "../pages/FoodPartnerRegister";
+
 
 export default function AppRoutes() {
     return (
         <Router>
             <Routes>
-                <Route path="/user/register" element={<h1 className="text-slate-900">User Register</h1>} />
-                <Route path="/user/login" element={<h1>User Login</h1>} />
-                <Route path="/food-partner/register" element={<h1>Food Partner Register</h1>} />
-                <Route path="/food-partner/login" element={<h1>Food Partner Login</h1>} />
+                <Route path="/user/register" element={<UserRegister/>} />
+                <Route path="/user/login"  element={<UserLogin/>} /> 
+                <Route path="/food-partner/register" element={<FoodPartnerRegister/>} />
+                <Route path="/food-partner/login" element={<FoodPartnerLogin/>} />
             </Routes>
         </Router>
     );
