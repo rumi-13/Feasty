@@ -7,7 +7,7 @@ const foodPartnerModel = require('../models/foodpartner.model');
 
 //Register User
 async function registerUser(req, res) {
-  const { fullName, email, password } = req.body;
+  const { fullName, email,password } = req.body;
 
   const isUserAlreadyExists = await userModel.findOne({
     email,
@@ -90,7 +90,7 @@ function logoutUser(req,res){
 
 // Register FoodPartner 
 async function registerFoodPartner(req, res) {
-  const{name, email, password} = req.body;
+  const{name, email, contact, password} = req.body;
 
   const isFoodPartnerExisting = await foodPartnerModel.findOne({email});
 
@@ -104,6 +104,7 @@ async function registerFoodPartner(req, res) {
   const foodPartner = await foodPartnerModel.create({
     name, 
     email,
+    contact,
     password: hashedPassword,
   })
 
@@ -153,6 +154,7 @@ async function loginFoodPartner(req, res){
         id: user._id,
         name: user.name,
         email: user.email,
+        contact: contact,
       }
     })
 }
