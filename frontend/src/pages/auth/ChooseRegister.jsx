@@ -3,68 +3,66 @@ import { Link } from 'react-router-dom';
 
 const ChooseRegister = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">
-      <div className="max-w-4xl w-full space-y-10">
-        
+    <div className="min-h-screen flex items-center justify-center bg-[#faf7f4] px-6 font-sans text-gray-900">
+      <div className="w-full max-w-3xl">
+
         {/* Header */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Join FoodApp
+        <div className="text-center mb-14">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+            Join Feasty
           </h2>
-          <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-            Select your account type to get started. Are you here to order delicious meals or manage a restaurant?
+          <p className="mt-4 text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
+            Choose how you want to use the platform.
           </p>
         </div>
 
-        {/* Selection Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 sm:px-0">
-          
-          {/* Customer Choice */}
-          <div className="group relative flex flex-col items-center p-8 sm:p-10 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="h-20 w-20 bg-gray-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
-               <span className="text-4xl">🍕</span>
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">I want to order food</h3>
-            <p className="mt-3 text-center text-gray-500 text-sm leading-relaxed max-w-xs mb-8">
-              Create a personal account to browse menus, save favorites, and track deliveries.
+        {/* Choices */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          {/* Customer */}
+          <div className="group border border-gray-200 rounded-2xl p-8 bg-white transition hover:border-black">
+            <h3 className="text-xl font-bold mb-2">
+              Order food
+            </h3>
+            <p className="text-sm text-gray-500 mb-8 leading-relaxed">
+              Discover dishes through reels, save favorites, and order from nearby places.
             </p>
-            
-            <div className="w-full flex flex-col sm:flex-row gap-3">
-              <Link 
-                to="/user/register" 
-                className="flex-1 text-center px-6 py-3 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+
+            <div className="flex gap-3">
+              <Link
+                to="/user/register"
+                className="flex-1 text-center py-2.5 text-sm font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition"
               >
                 Sign up
               </Link>
-              <Link 
-                to="/user/login" 
-                className="flex-1 text-center px-6 py-3 bg-gray-100 text-black text-sm font-semibold rounded-xl hover:bg-gray-200 transition-colors"
+              <Link
+                to="/user/login"
+                className="flex-1 text-center py-2.5 text-sm font-semibold border border-gray-300 rounded-lg hover:border-black transition"
               >
                 Log in
               </Link>
             </div>
           </div>
 
-          {/* Partner Choice */}
-          <div className="group relative flex flex-col items-center p-8 sm:p-10 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="h-20 w-20 bg-gray-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
-               <span className="text-4xl">🏪</span>
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">I want to sell food</h3>
-            <p className="mt-3 text-center text-gray-500 text-sm leading-relaxed max-w-xs mb-8">
-              Register your restaurant, upload your menu, and reach more customers nearby.
+          {/* Partner */}
+          <div className="group border border-gray-200 rounded-2xl p-8 bg-white transition hover:border-black">
+            <h3 className="text-xl font-bold mb-2">
+              Sell food
+            </h3>
+            <p className="text-sm text-gray-500 mb-8 leading-relaxed">
+              Showcase your dishes with reels and reach hungry customers nearby.
             </p>
-            
-            <div className="w-full flex flex-col sm:flex-row gap-3">
-              <Link 
-                to="/partner/register" 
-                className="flex-1 text-center px-6 py-3 bg-black text-white text-sm font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+
+            <div className="flex gap-3">
+              <Link
+                to="/partner/register"
+                className="flex-1 text-center py-2.5 text-sm font-semibold bg-black text-white rounded-lg hover:bg-gray-800 transition"
               >
                 Sign up
               </Link>
-              <Link 
-                to="/partner/login" 
-                className="flex-1 text-center px-6 py-3 bg-gray-100 text-black text-sm font-semibold rounded-xl hover:bg-gray-200 transition-colors"
+              <Link
+                to="/partner/login"
+                className="flex-1 text-center py-2.5 text-sm font-semibold border border-gray-300 rounded-lg hover:border-black transition"
               >
                 Log in
               </Link>

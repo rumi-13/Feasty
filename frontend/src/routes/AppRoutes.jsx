@@ -7,6 +7,10 @@ import Home from "../pages/general/Home";
 import Welcome from "../pages/general/Welcome";
 import ChooseRegister from "../pages/auth/ChooseRegister";
 import VideoReels from "../pages/components/VideoReels";
+import Profile from "../pages/food-partner/Profile";
+import CreateFood from "../pages/food-partner/CreateFood";
+import SavedReels from "../pages/components/SavedReels";
+import WelcomePartner from "../pages/general/WelcomePartner";
 
 
 export default function AppRoutes() {
@@ -19,9 +23,13 @@ export default function AppRoutes() {
                 <Route path="/partner/register" element={<FoodPartnerRegister/>} />
                 <Route path="/partner/login" element={<FoodPartnerLogin/>} />
                 <Route path="/" element={<Home/>}/>
-                <Route path="/home/welcome" element={<Welcome/>} />
+                <Route path="/welcome/:id" element={<Welcome/>} />
                 <Route path = "/create-food" element={<h1>Food</h1>}/>
-                <Route path="/food-reels" element={<VideoReels/>}/>
+                <Route path="/:id/food-reels" element={<VideoReels/>}/>
+                <Route path= "/partner/profile/:id" element={<Profile/>}/>
+                <Route path="/partner/create-food" element={<CreateFood/>} />
+                <Route path="/partner/welcome" element={<WelcomePartner/>}/>
+                <Route path = "/:id/saved-reels" element={<SavedReels/>}/>
             </Routes>
         </Router>
     );

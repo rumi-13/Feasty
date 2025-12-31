@@ -18,7 +18,7 @@ const FoodPartnerLogin = () => {
     try {
       const response = await axios.post("http://localhost:3000/api/auth/foodpartner/login", formData, {withCredentials:true});
       console.log(response.data.message);
-      navigate('/create-food');
+      navigate('/partner/welcome');
       
     } catch (error) {
         console.log(error.response?.data || error);

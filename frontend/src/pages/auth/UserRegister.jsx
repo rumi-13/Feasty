@@ -19,7 +19,9 @@ const UserRegister = () => {
    try {
     const response = await axios.post("http://localhost:3000/api/auth/user/register", formData,  { withCredentials: true });
     console.log(response.data.message);
-    navigate('/home/welcome');
+    const id = response.data.user._id;
+      navigate(`/welcome/${id}`);
+   
    } catch (error) {
     console.log(error.response?.data || error);
    }
