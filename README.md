@@ -1,6 +1,6 @@
-# FIESTY (F-E-A-S-T-Y)
+# FEASTY
 
-Fiesty is a MERN stack learning project inspired by food delivery platforms, but focused on **short video reels** instead of ordering or logistics.
+Feasty is a MERN stack learning project inspired by food delivery platforms, but focused on **short video reels** instead of ordering or logistics.
 
 The primary goal of this project is to understand and implement core MERN concepts such as authentication, role separation, media handling, and client–server interaction.
 
