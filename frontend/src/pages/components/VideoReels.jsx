@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../utils/axios";
 import { Heart, Store, Home, Bookmark } from "lucide-react";
 
 const VideoReels = () => {
@@ -11,7 +11,7 @@ const VideoReels = () => {
   // Fetch reels
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/food/", { withCredentials: true })
+      .get("/api/food/")
       .then((res) => {
         const normalized = res.data.foodItems.map(item => ({
           ...item,
@@ -102,9 +102,8 @@ const ReelItem = ({ video, setReels }) => {
 
     try {
       await axios.post(
-        "http://localhost:3000/api/food/like",
-        { foodId: video._id },
-        { withCredentials: true }
+        "/api/food/like",
+        { foodId: video._id }
       );
     } catch {
       setReels(prev =>
@@ -137,9 +136,8 @@ const ReelItem = ({ video, setReels }) => {
 
     try {
       await axios.post(
-        "http://localhost:3000/api/food/save",
-        { foodId: video._id },
-        { withCredentials: true }
+        "/api/food/save",
+        { foodId: video._id }
       );
     } catch {
       setReels(prev =>

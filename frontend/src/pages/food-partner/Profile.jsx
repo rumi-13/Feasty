@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, Play } from "lucide-react";
-import axios from "axios";
+import axios from "../../utils/axios";
 import foodPartnerIcon from "../../assets/images/food-partner-icon.png";
 
 const Profile = () => {
@@ -13,9 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/food-partner/${id}`, {
-        withCredentials: true,
-      })
+      .get(`/api/food-partner/${id}`)
       .then((res) => {
         setProfile(res.data.foodPartner);
         setVideos(res.data.foodPartner?.foodItemsByFoodPartner || []);

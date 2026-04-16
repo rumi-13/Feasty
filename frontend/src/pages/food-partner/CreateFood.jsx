@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronLeft, Upload, Video, Trash2, RefreshCw } from "lucide-react";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 const CreateFood = () => {
   const [formData, setFormData] = useState({
@@ -57,9 +57,8 @@ const CreateFood = () => {
 
       // Make the POST request
       const response = await axios.post(
-        "http://localhost:3000/api/food/",
+        "/api/food/",
         data,
-        { withCredentials: true },
         {
           headers: {
             "Content-Type": "multipart/form-data", // Required for file uploads

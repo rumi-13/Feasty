@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../utils/axios";
 import { ArrowLeft, Play, Trash2, Home, Bookmark } from "lucide-react";
 
 const SavedReels = () => {
@@ -11,9 +11,7 @@ const SavedReels = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/food/${id}/saved`, {
-        withCredentials: true,
-      })
+      .get(`/api/food/${id}/saved`)
       .then((res) => {
         setSavedReels(res.data.saved || []);
         setLoading(false);
@@ -152,3 +150,4 @@ const SavedReels = () => {
 };
 
 export default SavedReels;
+
