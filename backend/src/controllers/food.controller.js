@@ -7,29 +7,48 @@ const mongoose = require("mongoose");
 
 // Create foodItem
 async function createFoodItem(req, res) {
-  /*Upload File to imageKit */
-  const fileUploadResult = await storageService.uploadFile(
-    req.file.buffer,
-    uuid()
-  );
-  console.log(fileUploadResult);
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No video file provided" });
+    }
 
-  const foodItem = await foodModel.create({
-    name: req.body.name,
-    description: req.body.description,
-    video: fileUploadResult.url,
-    foodPartner: req.foodPartner._id,
-  });
+    /*Upload File to imageKit */
+    console.log("Attempting to upload to ImageKit...");
+    const fileUploadResult = await storageService.uploadFile(
+      req.file.buffer,
+      uuid()
+    );
+    console.log("ImageKit upload result:", fileUploadResult);
 
-  res.status(201).json({
-    message: "food item created successfully",
-    food: foodItem,
-  });
+    const foodItem = await foodModel.create({
+      name: req.body.name,
+      description: req.body.description,
+      video: fileUploadResult.url,
+      foodPartner: req.foodPartner._id,
+    });
+
+    res.status(201).json({
+      message: "food item created successfully",
+      food: foodItem,
+    });
+  } catch (error) {
+    console.error("Error in createFoodItem:", error);
+    res.status(500).json({
+      message: "Failed to create food item",
+      error: error.message,
+    });
+  }
 }
 
 // Get foodItem
 async function getFoodItems(req, res) {
-  const foodItems = await foodModel.find();
+  const rawFoodItems = await foodModel.find();
+  
+  const foodItems = rawFoodItems.map(item => ({
+    ...item._doc,
+    video: storageService.getOptimizedVideoUrl(item.video),
+    thumbnail: storageService.getThumbnailUrl(item.video)
+  }));
 
   res.status(200).json({
     message: "Food Items fetched successfully!",
@@ -47,7 +66,16 @@ async function getSavedReels(req, res) {
       .find({ user: id })
       .populate("food");
 
-    const cleanSavedReels = savedReels.filter(item => item.food);
+    const cleanSavedReels = savedReels
+      .filter(item => item.food)
+      .map(item => ({
+        ...item._doc,
+        food: {
+          ...item.food._doc,
+          video: storageService.getOptimizedVideoUrl(item.food.video),
+          thumbnail: storageService.getThumbnailUrl(item.food.video)
+        }
+      }));
 
     return res.status(200).json({
       message: "Saved posts fetched successfully!",

@@ -75,6 +75,7 @@ const SavedReels = () => {
                 {/* Locked preview (no autoplay, no hover play) */}
                 <video
                   src={reel.food.video}
+                  poster={reel.food.thumbnail}
                   muted
                   playsInline
                   preload="metadata"

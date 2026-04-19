@@ -18,6 +18,42 @@ async function uploadFile(file, fileName){
     return result;
 }
 
+// get optimized video URL
+function getOptimizedVideoUrl(url) {
+    if (!url) return url;
+    
+    return imagekit.url({
+        src: url,
+        transformation: [
+            {
+                quality: "30",          // Extreme compression
+                format: "auto",         // WebM/MP4
+                height: "480",          // 480p is very light and looks okay on mobile
+                video_bitrate: "500k",  // Low bitrate for guaranteed smoothness
+            }
+        ]
+    });
+}
+
+// get video thumbnail URL
+function getThumbnailUrl(url) {
+    if (!url) return url;
+    
+    return imagekit.url({
+        src: url,
+        transformation: [
+            {
+                quality: "20",
+                format: "jpg",
+                height: "480",
+                "so": "1"
+            }
+        ]
+    });
+}
+
 module.exports ={
     uploadFile,
+    getOptimizedVideoUrl,
+    getThumbnailUrl,
 }
