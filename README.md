@@ -1,74 +1,63 @@
-# FEASTY
+# FEASTY 🍔🎬
 
-Feasty is a MERN stack learning project inspired by food delivery platforms, but focused on **short video reels** instead of ordering or logistics.
+Feasty is a high-performance MERN stack project inspired by food delivery platforms, but focused on an immersive **short video reel experience**.
 
-The primary goal of this project is to understand and implement core MERN concepts such as authentication, role separation, media handling, and client–server interaction.
-
-This is **not a production food delivery application**.
+The primary goal of this project is to implement high-performance media delivery, role-based access control, and a modern, seamless user interface.
 
 ---
 
-## Overview
+## 🚀 Recent Performance Optimizations
 
-Fiesty supports two roles:
+We have implemented extreme optimizations to ensure a "TikTok-like" smooth experience even on slower connections:
 
-### Users
-- Sign up and log in
-- Watch food-related video reels
-- Like reels
-- Save reels for later viewing
+### 🎥 Optimized Media Delivery (ImageKit)
+- **Real-time Transformations:** Videos are dynamically compressed to **480p** with a bitrate cap of **500k** for near-instant playback.
+- **Aggressive Compression:** Quality is tuned for mobile screens to minimize bandwidth without sacrificing visual clarity.
+- **Smart Thumbnails:** Automated JPG poster generation for instant visual feedback during buffering.
 
-### Food Partners
-- Sign up and log in
-- Upload video reels
-- Add descriptions and related metadata
-
-There is no cart, checkout, payment, or delivery workflow implemented.
+### ⚡ Advanced Reel Engine
+- **Intelligent Preloading:** The app preloads the current and next two videos ahead of time.
+- **Sticky Caching:** Once a video starts loading, it stays cached even when scrolling away, making re-watching instantaneous.
+- **Auto-Scroll:** Seamless transition to the next reel upon completion.
+- **Buffering Management:** Integrated loading states and smooth transitions for a polished feel.
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
-- React.js
-- JavaScript (ES6+)
-- CSS (basic styling)
+- **React.js** (Functional Components & Hooks)
+- **Tailwind CSS** (Modern utility-first styling)
+- **Lucide React** (Beautiful, consistent iconography)
+- **Axios** (Efficient API communication)
 
 ### Backend
-- Node.js
-- Express.js
+- **Node.js & Express.js**
+- **MongoDB & Mongoose** (Scalable data modeling)
+- **JWT** (Secure, role-based authentication)
 
-### Database
-- MongoDB
-- Mongoose ODM
-
-### Authentication
-- JSON Web Tokens (JWT)
-- Role-based access control (User / Food Partner)
-
-### Media Storage
-- ImageKit  
-  Used for storing and serving video reels instead of local server storage.
+### Media Cloud
+- **ImageKit.io** (Advanced real-time video transformation & CDN)
 
 ---
 
-## Core Features
+## ✨ Core Features
 
-- JWT-based authentication
-- User and food partner role separation
-- Secure signup and login
-- Video reel upload (food partners)
-- Reel feed for users
-- Like functionality
-- Save functionality
-- RESTful API structure
+- **JWT Authentication:** Secure signup/login for both Users and Food Partners.
+- **Role-Based Experience:** 
+  - **Partners:** Can upload, manage, and showcase their food reels.
+  - **Users:** Can discover, like, and save reels to their personal collection.
+- **Glassmorphism UI:** Modern, translucent interface design.
+- **Optimized Feed:** High-performance scrolling with intersection observers for autoplay.
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
-Screenshots are stored separately from application code for documentation clarity.
 ![Home](./docs/screenshots/Home.png)
 ![Reels](./docs/screenshots/Reels.png)
 ![Saved](./docs/screenshots/Saved.png)
 
+---
+
+*Note: This is a learning project focused on media handling and UI/UX, not a production delivery app.*
