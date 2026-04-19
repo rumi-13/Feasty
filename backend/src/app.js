@@ -6,9 +6,14 @@ const foodPartnerRoutes = require('./routes/food-partner.routes')
 const cors = require('cors')
 const app = express();
 
+// Trust proxy for secure cookies on Render
+app.set('trust proxy', 1);
+
 app.use(cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    credentials: true
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 app.use(cookieParser())
