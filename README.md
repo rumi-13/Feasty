@@ -52,6 +52,16 @@ We have implemented extreme optimizations to ensure a "TikTok-like" smooth exper
 
 ---
 
+## 🧭 Backend MVC Starter Flow
+
+If you want to build another backend with a similar structure, follow this implementation guide:
+
+- [Backend MVC Starter Guide](./docs/backend-mvc-starter-guide.md)
+
+It explains the build order, request lifecycle, and a concrete endpoint example from route to DB response.
+
+---
+
 ## 📸 Screenshots
 
 ![Home](./docs/screenshots/Home.png)
