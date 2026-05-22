@@ -72,18 +72,17 @@ const SavedReels = () => {
                   group
                 "
               >
-                {/* Locked preview (no autoplay, no hover play) */}
+                {/* Video */}
                 <video
                   src={reel.food.video}
-                  poster={reel.food.thumbnail}
                   muted
                   playsInline
                   preload="metadata"
                   tabIndex={-1}
                   className="
                     w-full h-full
-                    object-contain
-                    bg-black
+                    object-cover
+                    bg-gray-800
                     pointer-events-none
                   "
                 />
@@ -92,11 +91,9 @@ const SavedReels = () => {
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/90 to-transparent pointer-events-none" />
 
                 {/* Play indicator */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="opacity-0 group-hover:opacity-100 transition">
-                    <div className="bg-black/70 p-3 rounded-full">
-                      <Play size={20} className="fill-white stroke-white ml-0.5" />
-                    </div>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-100 opacity-0 transition-opacity">
+                  <div className="bg-black/70 p-3 rounded-full">
+                    <Play size={20} className="fill-white stroke-white ml-0.5" />
                   </div>
                 </div>
 

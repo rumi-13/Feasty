@@ -16,6 +16,9 @@ router.post('/', authMiddleware.authFoodPartnerMiddleware, upload.single("video"
 /*POST: /api/food/  {protected: only user} */
 router.get('/', authMiddleware.authUserMiddleware, foodController.getFoodItems);
 
+/* GET: /api/food/user/interactions */
+router.get('/user/interactions', authMiddleware.authUserMiddleware, foodController.getUserInteractions);
+
 /* POST: /api/food/like*/
 router.post('/like', authMiddleware.authUserMiddleware, foodController.likeFood);
 

@@ -10,21 +10,34 @@ const VideoReels = () => {
   const navigate = useNavigate();
   const reelRefs = useRef([]);
 
-  // Fetch reels
+  // Fetch reels and user interactions
   useEffect(() => {
-    axios
-      .get("/api/food/")
-      .then((res) => {
-        const normalized = res.data.foodItems.map(item => ({
+    const fetchReelsAndInteractions = async () => {
+      try {
+        // Fetch all food items
+        const foodRes = await axios.get("/api/food/");
+        
+        // Fetch user interactions (likes and saves)
+        const interactionsRes = await axios.get("/api/food/user/interactions");
+        
+        const { likes, saves } = interactionsRes.data;
+        
+        // Normalize food items with user interaction data
+        const normalized = foodRes.data.foodItems.map(item => ({
           ...item,
-          isLiked: false,
-          isSaved: false,
+          isLiked: likes.includes(item._id),
+          isSaved: saves.includes(item._id),
         }));
+        
         setReels(normalized);
         // Initialize refs array
         reelRefs.current = normalized.map(() => React.createRef());
-      })
-      .catch(console.error);
+      } catch (error) {
+        console.error("Error fetching reels or interactions:", error);
+      }
+    };
+
+    fetchReelsAndInteractions();
   }, []);
 
   const scrollToNext = useCallback((currentIndex) => {
@@ -200,7 +213,6 @@ const ReelItem = memo(({ video, index, isActive, shouldPreload, setActiveReelInd
       <video
         ref={videoRef}
         src={video.video}
-        poster={video.thumbnail}
         muted
         playsInline
         preload={hasStartedPreloading ? "auto" : "metadata"}

@@ -46,8 +46,7 @@ async function getFoodItems(req, res) {
   
   const foodItems = rawFoodItems.map(item => ({
     ...item._doc,
-    video: storageService.getOptimizedVideoUrl(item.video),
-    thumbnail: storageService.getThumbnailUrl(item.video)
+    video: storageService.getOptimizedVideoUrl(item.video)
   }));
 
   res.status(200).json({
@@ -72,8 +71,7 @@ async function getSavedReels(req, res) {
         ...item._doc,
         food: {
           ...item.food._doc,
-          video: storageService.getOptimizedVideoUrl(item.food.video),
-          thumbnail: storageService.getThumbnailUrl(item.food.video)
+          video: storageService.getOptimizedVideoUrl(item.food.video)
         }
       }));
 
@@ -168,10 +166,43 @@ async function saveFood(req, res) {
     like,
   });
 }
+
+// Get User Interactions (liked and saved foods)
+async function getUserInteractions(req, res) {
+  try {
+    const user = req.user;
+
+    // Get all liked food IDs for the user
+    const likedFoods = await likeModel
+      .find({ user: user._id })
+      .select("food");
+    
+    // Get all saved food IDs for the user
+    const savedFoods = await saveModel
+      .find({ user: user._id })
+      .select("food");
+
+    const likedIds = likedFoods.map(item => item.food.toString());
+    const savedIds = savedFoods.map(item => item.food.toString());
+
+    return res.status(200).json({
+      message: "User interactions fetched successfully",
+      likes: likedIds,
+      saves: savedIds,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
+}
+
 module.exports = {
   createFoodItem,
   getFoodItems,
   likeFood,
   saveFood,
   getSavedReels,
+  getUserInteractions,
 };

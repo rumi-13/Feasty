@@ -35,25 +35,7 @@ function getOptimizedVideoUrl(url) {
     });
 }
 
-// get video thumbnail URL
-function getThumbnailUrl(url) {
-    if (!url) return url;
-    
-    return imagekit.url({
-        src: url,
-        transformation: [
-            {
-                quality: "20",
-                format: "jpg",
-                height: "480",
-                "so": "1"
-            }
-        ]
-    });
-}
-
 module.exports ={
     uploadFile,
     getOptimizedVideoUrl,
-    getThumbnailUrl,
 }
