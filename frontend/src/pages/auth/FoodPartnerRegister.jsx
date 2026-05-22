@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../utils/axios';
+import Navbar from '../../components/Navbar';
 const FoodPartnerRegister = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -28,7 +29,8 @@ const FoodPartnerRegister = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 relative pt-24">
+      <Navbar />
       <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">Register Partner</h2>

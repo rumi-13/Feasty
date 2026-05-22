@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, Play } from "lucide-react";
 import axios from "../../utils/axios";
-import foodPartnerIcon from "../../assets/images/food-partner-icon.png";
+import foodPartnerIcon from "../../assets/icons/food-partner-icon.png";
 
 const Profile = () => {
   const { id } = useParams();

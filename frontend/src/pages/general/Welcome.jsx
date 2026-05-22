@@ -42,30 +42,13 @@ const Welcome = () => {
         Logout
       </button>
 
-      {/* INTERACTIVE BACKGROUND */}
-      <div
-        className="absolute inset-0 z-0 transition-all duration-300"
-        style={{
-          background: `
-            radial-gradient(
-              circle at ${pos.x}% ${pos.y}%,
-              rgba(251,146,60,0.28),
-              transparent 35%
-            ),
-            radial-gradient(
-              circle at 70% 80%,
-              rgba(239,68,68,0.18),
-              transparent 45%
-            )
-          `,
-        }}
-      />
+     
 
       {/* GRAIN */}
       <div className="absolute inset-0 z-0 opacity-[0.035] mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9ImJsYWNrIi8+PC9zdmc+')]" />
 
       {/* BRAND */}
-      <div className="absolute top-6 left-6 z-10 text-xl font-black tracking-tight">
+      <div className="absolute top-6 left-6 z-10 text-xl text-orange-500 tracking-tight font-bold">
         FEASTY
       </div>
 
@@ -99,10 +82,7 @@ const Welcome = () => {
         </div>
       </div>
 
-      {/* FOOTER */}
-      <div className="absolute bottom-8 w-full text-center text-xs text-gray-400 tracking-widest uppercase">
-        Visual Dining
-      </div>
+     
 
     </div>
   );

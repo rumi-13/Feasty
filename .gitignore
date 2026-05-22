@@ -22,3 +22,5 @@ Thumbs.db
 # Editor cache
 .vscode/
 .idea/
+
+convert-images.js
