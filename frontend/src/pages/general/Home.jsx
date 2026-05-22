@@ -28,18 +28,19 @@ const Home = () => {
     <div className="relative min-h-screen flex flex-col font-sans text-gray-900 overflow-hidden bg-[#faf7f4]">
 
       {/* BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-zinc-950">
         {/* Carousel Images */}
         {slides.map((slide, idx) => (
-          <div
+          <img
             key={idx}
-            className="absolute inset-0 transition-transform duration-300"
-            style={{
-              backgroundImage: `url(${slide})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              opacity: idx === currentSlide ? 1 : 0,
-            }}
+            src={slide}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              idx === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            // Prioritize the first image to reduce LCP
+            fetchPriority={idx === 0 ? "high" : "auto"}
+            loading={idx === 0 ? "eager" : "lazy"}
           />
         ))}
         
@@ -125,7 +126,7 @@ const Home = () => {
         .noise-overlay {
           opacity: 0.04;
           background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9ImJsYWNrIi8+PC9zdmc+");
-          mix-blend-overlay;
+          mix-blend-mode: overlay;
         }
       `}</style>
     </div>
