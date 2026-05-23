@@ -217,12 +217,8 @@ const verifyGoogleToken = async (req, res) => {
         { expiresIn: '7d' }
       );
 
-      res.cookie('token', jwtToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      // Use shared cookieOptions so SameSite is None in production and cookie is sent cross-site
+      res.cookie('token', jwtToken, cookieOptions);
 
       return res.status(200).json({
         message: 'User logged in successfully',
@@ -258,12 +254,8 @@ const verifyGoogleToken = async (req, res) => {
         { expiresIn: '7d' }
       );
 
-      res.cookie('token', jwtToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-      });
+      // Use shared cookieOptions so SameSite is None in production and cookie is sent cross-site
+      res.cookie('token', jwtToken, cookieOptions);
 
       return res.status(200).json({
         message: 'FoodPartner logged in successfully',
@@ -312,13 +304,8 @@ const registerUserWithGoogle = async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    // Send JWT in HTTP-only cookie
-    res.cookie('token', jwtToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    // Send JWT in HTTP-only cookie (use shared cookieOptions)
+    res.cookie('token', jwtToken, cookieOptions);
 
     return res.status(201).json({
       message: 'User created successfully',
@@ -363,13 +350,8 @@ const registerFoodPartnerWithGoogle = async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    // Send JWT in HTTP-only cookie
-    res.cookie('token', jwtToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'Strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    // Send JWT in HTTP-only cookie (use shared cookieOptions)
+    res.cookie('token', jwtToken, cookieOptions);
 
     return res.status(201).json({
       message: 'FoodPartner created successfully',
