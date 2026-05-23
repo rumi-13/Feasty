@@ -9,8 +9,12 @@ const app = express();
 // Trust proxy for secure cookies on Render
 app.set('trust proxy', 1);
 
+// Configure CORS origin. If FRONTEND_URL is set use it. If not, and we're in
+// production, fall back to the deployed frontend URL. Local development
+// continues to use the localhost origin.
+const defaultFrontend = process.env.FRONTEND_URL || (process.env.NODE_ENV === 'production' ? 'https://feasty-1.onrender.com' : 'http://localhost:5173');
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: defaultFrontend,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
