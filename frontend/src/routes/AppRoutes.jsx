@@ -8,27 +8,29 @@ import Welcome from "../pages/general/Welcome";
 import ChooseRegister from "../pages/auth/ChooseRegister";
 import VideoReels from "../pages/components/VideoReels";
 import Profile from "../pages/food-partner/Profile";
+import UserProfile from "../pages/general/UserProfile";
 import CreateFood from "../pages/food-partner/CreateFood";
 import SavedReels from "../pages/components/SavedReels";
 import WelcomePartner from "../pages/general/WelcomePartner";
-
+import UnifiedLogin from '../pages/auth/UnifiedLogin';
 
 export default function AppRoutes() {
     return (
         <Router>
             <Routes>
                 <Route path="/choose-register" element={<ChooseRegister/>}/>
-                <Route path="/user/register" element={<UserRegister/>} />
-                <Route path="/user/login"  element={<UserLogin/>} /> 
-                <Route path="/partner/register" element={<FoodPartnerRegister/>} />
-                <Route path="/partner/login" element={<FoodPartnerLogin/>} />
+                         
+            <Route path="/login" element={<UnifiedLogin />} />
                 <Route path="/" element={<Home/>}/>
                 <Route path="/welcome/:id" element={<Welcome/>} />
+                <Route path="/user/register" element={<UserRegister/>}/>
+                <Route path="/user/profile/:id" element={<UserProfile/>}/>
+                <Route path="/partner/register" element={<FoodPartnerRegister/>}/>
                 <Route path = "/create-food" element={<h1>Food</h1>}/>
                 <Route path="/:id/food-reels" element={<VideoReels/>}/>
                 <Route path= "/partner/profile/:id" element={<Profile/>}/>
                 <Route path="/partner/create-food" element={<CreateFood/>} />
-                <Route path="/partner/welcome" element={<WelcomePartner/>}/>
+                <Route path="/partner/welcome/" element={<WelcomePartner/>}/>
                 <Route path = "/:id/saved-reels" element={<SavedReels/>}/>
             </Routes>
         </Router>

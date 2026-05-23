@@ -19,6 +19,12 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json());
 
+// Allow popup-based auth flows to use window.closed safely
+app.use((req, res, next) => {
+    res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+    next();
+});
+
 
 
 app.get("/", (req, res)=>{

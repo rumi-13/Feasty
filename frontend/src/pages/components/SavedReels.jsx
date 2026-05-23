@@ -19,10 +19,20 @@ const SavedReels = () => {
       .catch(() => setLoading(false));
   }, [id]);
 
-  const handleRemove = (e, saveId) => {
+  const handleRemove = async (e, saveId, foodId) => {
     e.stopPropagation();
     e.preventDefault();
-    setSavedReels((prev) => prev.filter((item) => item._id !== saveId));
+    
+    try {
+      // Call backend to unsave the food
+      await axios.post('/api/food/save', { foodId });
+      
+      // Remove from UI only after backend confirms
+      setSavedReels((prev) => prev.filter((item) => item._id !== saveId));
+    } catch (error) {
+      console.error('Error removing saved reel:', error);
+      alert('Failed to remove reel. Please try again.');
+    }
   };
 
   const handleViewReel = (foodId) => {
@@ -99,7 +109,7 @@ const SavedReels = () => {
 
                 {/* Remove */}
                 <button
-                  onClick={(e) => handleRemove(e, reel._id)}
+                  onClick={(e) => handleRemove(e, reel._id, reel.food._id)}
                   className="
                     absolute top-2 right-2
                     p-1.5 rounded-full

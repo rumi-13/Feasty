@@ -66,7 +66,7 @@ const Home = () => {
           </div>
 
           <Link
-            to="/choose-register"
+            to="/login"
             className="text-sm font-semibold px-6 py-2.5 rounded-full border border-white text-white
                      transition"
           >
@@ -90,7 +90,7 @@ const Home = () => {
           </p>
 
           <Link
-            to="/choose-register"
+            to="/login"
             className="text-base font-bold px-8 py-3 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition"
           >
             Start Your Journey →

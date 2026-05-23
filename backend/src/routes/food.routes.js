@@ -27,5 +27,8 @@ router.post('/save', authMiddleware.authUserMiddleware, foodController.saveFood)
 
 /*GET: '/api/food/saved' */
 router.get('/:id/saved', authMiddleware.authUserMiddleware, foodController.getSavedReels);
+
+/* DELETE: /api/food/:id  {protected: only foodPartner (owner)} */
+router.delete('/:id', authMiddleware.authFoodPartnerMiddleware, foodController.deleteFoodItem);
 // export router
 module.exports = router;

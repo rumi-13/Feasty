@@ -38,13 +38,13 @@ const ChooseRegister = () => {
 
             <div className="flex gap-3">
               <Link
-                to="/user/register"
+                to="/login"
                 className="flex-1 text-center py-3 text-sm font-semibold bg-black text-white rounded-xl hover:bg-gray-800 transition duration-200 active:scale-95"
               >
                 Sign up
               </Link>
               <Link
-                to="/user/login"
+                to="/login"
                 className="flex-1 text-center py-3 text-sm font-semibold border border-gray-300 rounded-xl hover:border-black hover:bg-gray-50 transition duration-200"
               >
                 Log in
@@ -68,13 +68,13 @@ const ChooseRegister = () => {
 
             <div className="flex gap-3">
               <Link
-                to="/partner/register"
+                to="/login"
                 className="flex-1 text-center py-3 text-sm font-semibold bg-black text-white rounded-xl hover:bg-gray-800 transition duration-200 active:scale-95"
               >
                 Sign up
               </Link>
               <Link
-                to="/partner/login"
+                to="/login"
                 className="flex-1 text-center py-3 text-sm font-semibold border border-gray-300 rounded-xl hover:border-black hover:bg-gray-50 transition duration-200"
               >
                 Log in

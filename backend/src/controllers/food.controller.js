@@ -205,4 +205,34 @@ module.exports = {
   saveFood,
   getSavedReels,
   getUserInteractions,
+  // Delete food item (only owner partner)
+  deleteFoodItem: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const partner = req.foodPartner; // set by authFoodPartnerMiddleware
+      if (!id) return res.status(400).json({ message: 'Food id required' });
+
+      const food = await foodModel.findById(id);
+      if (!food) return res.status(404).json({ message: 'Food not found' });
+
+      if (!partner || food.foodPartner.toString() !== partner._id.toString()) {
+        return res.status(403).json({ message: 'Not authorized to delete this item' });
+      }
+
+      // remove likes and saves associated with this food
+      try {
+        await likeModel.deleteMany({ food: id });
+        await saveModel.deleteMany({ food: id });
+      } catch (e) {
+        console.error('Error removing related likes/saves:', e);
+      }
+
+      await foodModel.findByIdAndDelete(id);
+
+      return res.status(200).json({ message: 'Food item deleted' });
+    } catch (err) {
+      console.error('deleteFoodItem error:', err);
+      return res.status(500).json({ message: 'Server error', error: err.message });
+    }
+  },
 };

@@ -19,10 +19,18 @@ const FoodPartnerLogin = () => {
     try {
       const response = await axios.post("/api/auth/foodpartner/login", formData);
       console.log(response.data.message);
+      const partner = response.data.user;
+      if (partner?.id) {
+        localStorage.setItem('userId', partner.id);
+      }
+      localStorage.setItem('userType', 'foodpartner');
+      localStorage.setItem('foodpartnerName', partner?.name || 'Partner');
+      localStorage.setItem('foodpartnerEmail', partner?.email || formData.email);
       navigate('/partner/welcome');
       
     } catch (error) {
         console.log(error.response?.data || error);
+        alert(error.response?.data?.message || 'Login failed');
         
     }
   };

@@ -10,13 +10,34 @@ const foodPandaSchema = new mongoose.Schema({
         type: String,
         required: true
     }, 
-     contact:{
+    contact:{
       type: String,
-      required: true,
+      required: false,
+      default: null,
     },
     password:{
         type: String,
-        required: true
+        required: false,
+        default: null,
+    },    
+    googleId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
+    photoURL: {
+      type: String,
+      default: null,
+    },
+    address: {
+      type: String,
+      required: true,
+      default: null,
+    },
+    bio: {
+      type: String,
+      required: true,
+      default: null,
     }
 
 })

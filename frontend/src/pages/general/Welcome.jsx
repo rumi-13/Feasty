@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
+import { User } from 'lucide-react';
 
 const Welcome = () => {
   const { id } = useParams();
@@ -26,20 +26,16 @@ const Welcome = () => {
     return () => window.removeEventListener('mousemove', move);
   }, []);
 
-  const handleLogout = () => {
-    navigate('/');
-  };
-
   return (
     <div className="relative min-h-screen overflow-hidden font-sans text-gray-900 bg-[#faf7f4]">
 
-      {/* Top Right Logout */}
+      {/* Top Right Profile Icon */}
       <button
-        onClick={handleLogout}
-        className="absolute top-6 right-6 z-20 flex items-center gap-2 text-xs text-gray-600 hover:text-black transition"
+        onClick={() => navigate(`/user/profile/${id}`)}
+        className="absolute top-6 right-6 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 text-gray-600 hover:text-black transition"
+        title="View Profile"
       >
-        <LogOut size={16} />
-        Logout
+        <User size={18} />
       </button>
 
      

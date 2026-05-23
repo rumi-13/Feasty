@@ -1,69 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Upload, Video, LogOut } from "lucide-react";
+import { Upload, Video, LogOut, MoreVertical } from "lucide-react";
+import ConfirmModal from '../../components/ConfirmModal';
+import axios from '../../utils/axios';
 
 const WelcomePartner = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const handleLogout = () => {
-    navigate("/");
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('foodpartnerName');
+    localStorage.removeItem('foodpartnerEmail');
+    localStorage.removeItem('foodpartnerPhoto');
+    navigate('/login');
   };
 
+  const confirmDelete = async () => {
+    try {
+      const pid = partnerId;
+      if (pid) await axios.delete(`/api/auth/foodpartner/${pid}`);
+    } catch (err) {
+      console.error('Error deleting partner:', err);
+    }
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('foodpartnerName');
+    localStorage.removeItem('foodpartnerEmail');
+    localStorage.removeItem('foodpartnerPhoto');
+    setShowConfirm(false);
+    navigate('/');
+  };
+
+  const partnerId = id || localStorage.getItem('userId');
+
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6 font-sans relative">
+    <div className="relative min-h-screen overflow-hidden font-sans text-gray-900 bg-[#faf7f4]">
 
-      {/* Top Right Logout */}
-      <button
-        onClick={handleLogout}
-        className="absolute top-5 right-5 flex items-center gap-2 text-xs text-gray-300 hover:text-white transition"
-      >
-        <LogOut size={16} />
-        Logout
-      </button>
-
-      <div className="max-w-xl w-full text-center">
-
-        {/* Brand */}
-        <div className="mb-8 text-2xl font-black tracking-tight">
-          FEASTY
-        </div>
-
-        {/* Welcome */}
-        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
-          Welcome to Feasty
-        </h1>
-
-        <p className="text-gray-400 text-base leading-relaxed mb-12">
-          This is your creator space.  
-          Upload short food videos and let customers discover your dishes visually.
-        </p>
-
-        {/* Primary Action */}
+      {/* Top Right Actions + Profile Icon */}
+      <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
         <button
-          onClick={() => navigate(`/partner/create-food`)}
-          className="
-            w-full sm:w-auto
-            inline-flex items-center justify-center gap-3
-            px-10 py-4
-            bg-white text-black
-            font-bold text-sm
-            rounded-full
-            hover:bg-gray-200
-            transition
-          "
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="flex items-center justify-center w-9 h-9 rounded-full bg-black/5 hover:bg-black/10 text-gray-600 hover:text-black transition"
+          title="Actions"
         >
-          <Upload size={18} />
-          Upload Your First Reel
+          <MoreVertical size={16} />
         </button>
 
-        {/* Secondary hint */}
-        <div className="mt-8 text-xs text-gray-500 flex items-center justify-center gap-2">
-          <Video size={14} />
-          Short vertical videos work best
-        </div>
+        <button
+          onClick={() => {
+            const pid = id || localStorage.getItem('userId');
+            if (pid) navigate(`/partner/profile/${pid}`);
+            else navigate('/login');
+          }}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 text-gray-600 hover:text-black transition"
+          title="View Profile"
+        >
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
+            <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M4 20c0-2.21 3.58-4 8-4s8 1.79 8 4" />
+          </svg>
+        </button>
 
+        {menuOpen && (
+          <div className="absolute right-0 top-12 mt-1 w-44 bg-white text-black rounded-md shadow-lg overflow-hidden z-50 border border-gray-200">
+            <button onClick={() => { setMenuOpen(false); handleLogout(); }} className="w-full text-left px-4 py-3 hover:bg-gray-50">Logout</button>
+            <button onClick={() => { setMenuOpen(false); setShowConfirm(true); }} className="w-full text-left px-4 py-3 text-red-500 hover:bg-gray-50">Close account</button>
+          </div>
+        )}
+
+        <ConfirmModal
+          open={showConfirm}
+          title="Delete account"
+          message="Are you sure you want to delete your account and all your videos? This action cannot be undone."
+          onConfirm={confirmDelete}
+          onCancel={() => setShowConfirm(false)}
+        />
       </div>
+
+      {/* BRAND */}
+      <div className="absolute top-6 left-6 z-10 text-xl text-orange-500 tracking-tight font-bold">
+        FEASTY
+      </div>
+
+      {/* CONTENT */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-6">
+        <div className="text-center max-w-xl group">
+
+          <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
+            Welcome, Partner.
+          </h1>
+
+          <p className="text-gray-600 text-lg leading-relaxed mb-12">
+            This is your creator space. Upload short food videos and let customers discover your dishes visually.
+          </p>
+
+          {/* CTA */}
+          <div className="relative inline-block">
+            <button
+              onClick={() => navigate(`/partner/create-food`)}
+              className="relative z-10 inline-block px-12 py-4 bg-black text-white text-sm font-bold rounded-full hover:bg-gray-800 transition-all"
+            >
+              Upload Your Food Reels
+            </button>
+
+            <div className="absolute inset-0 rounded-full blur-xl bg-black/20 scale-110 opacity-0 group-hover:opacity-100 transition" />
+          </div>
+
+        </div>
+      </div>
+
     </div>
   );
 };
