@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { MoreVertical } from 'lucide-react';
 import ConfirmModal from '../components/ConfirmModal';
 import axios from '../utils/axios';
+import { clearFoodPartnerData } from '../utils/localStorage';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -29,11 +30,7 @@ const Navbar = () => {
   const [toast, setToast] = useState({ visible: false, message: '', type: 'success' });
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
-    localStorage.removeItem('foodpartnerPhoto');
+    clearFoodPartnerData();
     showToast('Logged out successfully', 'success');
     setTimeout(() => navigate('/login'), 300);
   };
@@ -49,11 +46,7 @@ const Navbar = () => {
       showToast('Failed to delete account', 'error');
     }
 
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
-    localStorage.removeItem('foodpartnerPhoto');
+    clearFoodPartnerData();
     setShowConfirm(false);
     if (deleted) {
       showToast('Account deleted', 'success');

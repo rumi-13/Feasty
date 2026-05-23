@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, Play, Trash2 } from "lucide-react";
 import axios from "../../utils/axios";
 import ConfirmModal from '../../components/ConfirmModal';
+import { clearFoodPartnerData } from '../../utils/localStorage';
 import foodPartnerIcon from "../../assets/icons/food-partner-icon.png";
 
 const Profile = () => {
@@ -26,10 +27,7 @@ const Profile = () => {
   }, [id]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
+    clearFoodPartnerData();
     navigate('/login');
   };
 
@@ -43,10 +41,7 @@ const Profile = () => {
     } catch (err) {
       console.error('Error deleting partner:', err);
     }
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
+    clearFoodPartnerData();
     setShowConfirm(false);
     navigate('/');
   };

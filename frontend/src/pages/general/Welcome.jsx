@@ -13,19 +13,6 @@ const Welcome = () => {
   else if (hour < 18) greeting = 'Good afternoon';
   else greeting = 'Good evening';
 
-  const [pos, setPos] = useState({ x: 50, y: 50 });
-
-  useEffect(() => {
-    const move = (e) => {
-      setPos({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
-    window.addEventListener('mousemove', move);
-    return () => window.removeEventListener('mousemove', move);
-  }, []);
-
   return (
     <div className="relative min-h-screen overflow-hidden font-sans text-gray-900 bg-[#faf7f4]">
 

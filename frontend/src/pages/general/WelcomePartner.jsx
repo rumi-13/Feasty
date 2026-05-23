@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Upload, Video, LogOut, MoreVertical } from "lucide-react";
 import ConfirmModal from '../../components/ConfirmModal';
 import axios from '../../utils/axios';
+import { clearFoodPartnerData } from '../../utils/localStorage';
 
 const WelcomePartner = () => {
   const { id } = useParams();
@@ -10,33 +11,23 @@ const WelcomePartner = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const partnerId = id || localStorage.getItem('userId');
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
-    localStorage.removeItem('foodpartnerPhoto');
+    clearFoodPartnerData();
     navigate('/login');
   };
 
   const confirmDelete = async () => {
     try {
-      const pid = partnerId;
-      if (pid) await axios.delete(`/api/auth/foodpartner/${pid}`);
+      if (partnerId) await axios.delete(`/api/auth/foodpartner/${partnerId}`);
     } catch (err) {
       console.error('Error deleting partner:', err);
     }
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('foodpartnerName');
-    localStorage.removeItem('foodpartnerEmail');
-    localStorage.removeItem('foodpartnerPhoto');
+    clearFoodPartnerData();
     setShowConfirm(false);
     navigate('/');
   };
-
-  const partnerId = id || localStorage.getItem('userId');
 
   return (
     <div className="relative min-h-screen overflow-hidden font-sans text-gray-900 bg-[#faf7f4]">

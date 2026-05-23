@@ -13,12 +13,10 @@ async function createFoodItem(req, res) {
     }
 
     /*Upload File to imageKit */
-    console.log("Attempting to upload to ImageKit...");
     const fileUploadResult = await storageService.uploadFile(
       req.file.buffer,
       uuid()
     );
-    console.log("ImageKit upload result:", fileUploadResult);
 
     const foodItem = await foodModel.create({
       name: req.body.name,
@@ -98,8 +96,6 @@ async function likeFood(req, res) {
     user: user._id,
     food: foodId,
   });
-
-  console.log(isAlreadyLiked);
 
   if (isAlreadyLiked) {
     await likeModel.deleteOne({

@@ -1,11 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserRegister from "../pages/auth/UserRegister";
-import UserLogin from "../pages/auth/UserLogin";
-import FoodPartnerLogin from "../pages/auth/FoodPartnerLogin";
 import FoodPartnerRegister from "../pages/auth/FoodPartnerRegister";
 import Home from "../pages/general/Home";
 import Welcome from "../pages/general/Welcome";
-import ChooseRegister from "../pages/auth/ChooseRegister";
 import VideoReels from "../pages/components/VideoReels";
 import Profile from "../pages/food-partner/Profile";
 import UserProfile from "../pages/general/UserProfile";
@@ -18,15 +15,12 @@ export default function AppRoutes() {
     return (
         <Router>
             <Routes>
-                <Route path="/choose-register" element={<ChooseRegister/>}/>
-                         
-            <Route path="/login" element={<UnifiedLogin />} />
+                <Route path="/login" element={<UnifiedLogin />} />
                 <Route path="/" element={<Home/>}/>
                 <Route path="/welcome/:id" element={<Welcome/>} />
                 <Route path="/user/register" element={<UserRegister/>}/>
                 <Route path="/user/profile/:id" element={<UserProfile/>}/>
                 <Route path="/partner/register" element={<FoodPartnerRegister/>}/>
-                <Route path = "/create-food" element={<h1>Food</h1>}/>
                 <Route path="/:id/food-reels" element={<VideoReels/>}/>
                 <Route path= "/partner/profile/:id" element={<Profile/>}/>
                 <Route path="/partner/create-food" element={<CreateFood/>} />

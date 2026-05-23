@@ -2,21 +2,9 @@ import { useState } from 'react';
 import GoogleSignInButton from '../../components/GoogleSignInButton';
 import { UtensilsCrossed, Store } from 'lucide-react';
 import Navbar from '../../components/Navbar';
-import { useNavigate } from 'react-router-dom';
 
 const UnifiedLogin = () => {
   const [userType, setUserType] = useState('user');
-  const navigate = useNavigate();
-
-  // Handle when a new user is detected
-  const handleNewUser = (googleData) => {
-    // Navigate to register page with Google data
-    if (userType === 'user') {
-      navigate('/user/register', { state: { googleData, isGoogleSignup: true } });
-    } else {
-      navigate('/partner/register', { state: { googleData, isGoogleSignup: true } });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#faf7f4] font-sans text-gray-900">
@@ -106,7 +94,7 @@ const UnifiedLogin = () => {
         </div>
 
         <div className="flex justify-center">
-          <GoogleSignInButton userType={userType} onNewUser={handleNewUser} />
+          <GoogleSignInButton userType={userType} />
         </div>
 
         <div className="text-center mt-12 pt-8 border-t border-gray-200">

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from '../../utils/axios';
 import Navbar from '../../components/Navbar';
+import AuthCard from '../../components/AuthCard';
+import PrimaryButton from '../../components/PrimaryButton';
 
 const UserRegister = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isGoogleSignup, setIsGoogleSignup] = useState(false);
   const [googleData, setGoogleData] = useState(null);
   const [error, setError] = useState('');
 
@@ -17,8 +18,7 @@ const UserRegister = () => {
 
   // Check if coming from Google signup
   useEffect(() => {
-    if (location.state?.isGoogleSignup && location.state?.googleData) {
-      setIsGoogleSignup(true);
+    if (location.state?.googleData) {
       setGoogleData(location.state.googleData);
       setFormData({
         fullName: location.state.googleData.fullName || '',
@@ -62,7 +62,7 @@ const UserRegister = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 relative pt-24">
       <Navbar />
-      <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+      <AuthCard>
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">Create an account</h2>
           <p className="mt-2 text-sm text-gray-500">Get started with your free account.</p>
@@ -112,12 +112,7 @@ const UserRegister = () => {
 
           </div>
 
-          <button
-            type="submit"
-            className="group relative flex w-full justify-center rounded-lg bg-black px-4 py-3 text-sm font-semibold text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition duration-200"
-          >
-            Create Account
-          </button>
+          <PrimaryButton type="submit">Create Account</PrimaryButton>
         </form>
 
         <div className="text-center text-sm">
@@ -129,7 +124,7 @@ const UserRegister = () => {
             Back to login
           </button>
         </div>
-      </div>
+      </AuthCard>
     </div>
   );
 };

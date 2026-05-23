@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import ConfirmModal from '../../components/ConfirmModal';
+import AuthCard from '../../components/AuthCard';
 import axios from '../../utils/axios';
+import { clearUserData } from '../../utils/localStorage';
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -52,10 +54,7 @@ const UserProfile = () => {
   }, [id, navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('userFullName');
-    localStorage.removeItem('userEmail');
+    clearUserData();
     navigate('/login');
   };
 
@@ -71,10 +70,7 @@ const UserProfile = () => {
       // proceed to clear local data regardless
     }
 
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userType');
-    localStorage.removeItem('userFullName');
-    localStorage.removeItem('userEmail');
+    clearUserData();
     setShowConfirm(false);
     navigate('/login');
   };
@@ -95,7 +91,7 @@ const UserProfile = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8 relative pt-24">
       <Navbar />
-      <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-gray-100">
+      <AuthCard>
         <div className="text-center">
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900">My Profile</h2>
           <p className="mt-2 text-sm text-gray-500">Your account information</p>
@@ -157,7 +153,7 @@ const UserProfile = () => {
             Delete Account
           </button>
         </div>
-      </div>
+      </AuthCard>
     </div>
   );
 };

@@ -26,8 +26,6 @@ const GoogleSignInButton = ({ userType, onNewUser }) => {
         userType: userType, // 'user' or 'foodpartner'
       });
 
-      console.log("Backend response:", response.data);
-
       // Check if this is a new user or existing user
       if (response.data.status === "new_user") {
         // New user - navigate to register page with Google data

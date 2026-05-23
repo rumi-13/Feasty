@@ -120,15 +120,6 @@ const Home = () => {
           </p>
         </footer>
       </div>
-
-      {/* STYLES */}
-      <style>{`
-        .noise-overlay {
-          opacity: 0.04;
-          background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9ImJsYWNrIi8+PC9zdmc+");
-          mix-blend-mode: overlay;
-        }
-      `}</style>
     </div>
   );
 };
